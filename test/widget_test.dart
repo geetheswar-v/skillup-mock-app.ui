@@ -9,22 +9,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:skill_up/main.dart';
+import 'package:skill_up/core/state/app_state.dart';
+import 'package:skill_up/core/services/prefs_service.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
-
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('App renders without errors', (WidgetTester tester) async {
+    final appState = AppState(PrefsService());
+    // Avoid awaiting load to keep test simple; theme defaults to system.
+    await tester.pumpWidget(SkillUpApp(appState: appState));
+    // First pump builds FutureBuilder, second resolves microtasks.
+    await tester.pump(const Duration(milliseconds: 100));
+    // Should show either onboarding, login, or home shell; just ensure MaterialApp present.
+    expect(find.byType(MaterialApp), findsOneWidget);
   });
 }

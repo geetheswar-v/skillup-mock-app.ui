@@ -1,16 +1,24 @@
-# skill_up
+# SkillUP UI Prototype
 
-A new Flutter project.
+Demo-ready Flutter UI for an AI-powered mock testing platform for CAT & GATE aspirants.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Adaptive layouts: AppBar + BottomNavigationBar (mobile) and desktop header nav
+- Pages: Onboarding (mobile), Login, Dashboard, Tests, Analysis (charts), Account, Subscription, Exam Mode
+- Theme: Light/Dark/System with local persistence
+- Demo auth: OAuth-style buttons that route to dashboard
+- Exam Mode: timer, question navigation, and a demo security overlay
 
-A few resources to get you started if this is your first Flutter project:
+## Run
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Fetch deps
+   - `flutter pub get`
+2. Run app
+   - `flutter run -d chrome` or `flutter run -d linux` or a connected device
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Notes
+
+- Backend flows are mocked; navigation demonstrates end-to-end UX
+- Charts use `fl_chart` with placeholder data
+- State managed with `provider`; preferences with `shared_preferences`
